@@ -21,7 +21,6 @@ public class UsuarioController { // Fizer a requisição, vai bater aqui
     @PostMapping
     public Usuario criarUsuario(@RequestBody Usuario usuario) {
         return usuarioService.criarUsuario(usuario);
+
     }
-
-
 }
