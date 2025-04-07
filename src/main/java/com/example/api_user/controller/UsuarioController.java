@@ -13,14 +13,10 @@ public class UsuarioController { // Fizer a requisição, vai bater aqui
     @Autowired // Injetar a classe UsuarioService
     private UsuarioService usuarioService;
 
-    @GetMapping
-    public List<Usuario> listarUsuarios() {
-        return usuarioService.listarUsuarios();
-    }
 
     @PostMapping
-    public Usuario criarUsuario(@RequestBody Usuario usuario) {
-        return usuarioService.criarUsuario(usuario);
+    public Usuario criarUsuarioComPerfil(@RequestParam String nome, @RequestParam String bio) {
+        return usuarioService.criarUsuarioComPerfil(nome, bio);
 
     }
 }
