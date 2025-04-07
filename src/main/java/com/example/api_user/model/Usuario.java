@@ -1,18 +1,18 @@
 package com.example.api_user.model;
 
+import jakarta.persistence.*;
 import lombok.*;
 
-
+@Entity
 public class Usuario {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
-    private String email;
 
-    public Usuario(Long id, String nome, String email) {
-        this.id = id;
-        this.nome = nome;
-        this.email = email;
-    }
+    @OneToOne(cascade = CascadeType.ALL) // cascade = Indica que as operações de persistência (como salvar ou excluir) realizadas no objeto Usuario também serão aplicadas ao objeto Profile associado a ele.
+    @JoinColumn(name = "profile_id", referencedColumnName = "id") // profile_id é o nome da coluna que será criada na tabela Usuario e referencedColumnName é o nome da coluna que será referenciada na tabela Profile
+    private Profile profile;
 
     public Long getId() {
         return id;
@@ -30,11 +30,11 @@ public class Usuario {
         this.nome = nome;
     }
 
-    public String getEmail() {
-        return email;
+    public Profile getProfile() {
+        return profile;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setProfile(Profile profile) {
+        this.profile = profile;
     }
 }
